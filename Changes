@@ -1,5 +1,9 @@
 Revision history for Test-Spelling
 
+0.13  2011-04-27
+        - Make alternatives checking more robust by reading the spellchecker's
+          STDERR
+
 0.12  2011-04-25
         - Best Practical has taken over maintainership of this module
         - Try various spellcheck programs instead of hardcoding the ancient
@@ -19,7 +23,6 @@ Revision history for Test-Spelling
         - Rewrite and modernize a lot of the documentation
         - Decruftify code, such as by using Exporter and lexical filehandles
         - Support .plx files (you're welcome Schwern)
-
 
 0.11  2005-11-15
         - Some documentation fixes.

@@ -1,5 +1,9 @@
 Revision history for Test-Spelling
 
+0.14  2011-05-27
+        - Fix an error when using add_stopwords("constant", "strings")
+          [rt.cpan.org #68471] (reported by Nicholas Bamber)
+
 0.13  2011-04-27
         - Make alternatives checking more robust by reading the spellchecker's
           STDERR

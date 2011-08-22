@@ -323,7 +323,7 @@ in the L</SYNOPSIS>.
 Returns true if every POD file has correct spelling, or false if any of them fail.
 This function will show any spelling errors as diagnostics.
 
-=head2 pod_file_spelling_ok( FILENAME[, TESTNAME ] )
+=head2 pod_file_spelling_ok( $filename[, $testname ] )
 
 C<pod_file_spelling_ok> will test that the given POD file has no spelling
 errors.

@@ -1,5 +1,10 @@
 Revision history for Test-Spelling
 
+0.15  2011-08-22
+        - Begin adding actual tests
+          (Hilariously, adding the suggested t/pod-spell.t to this
+          dist to test itself found a typo: "stopwards")
+
 0.14  2011-05-27
         - Fix an error when using add_stopwords("constant", "strings")
           [rt.cpan.org #68471] (reported by Nicholas Bamber)

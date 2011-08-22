@@ -276,16 +276,16 @@ your distribution's F<xt/> directory. Anyway, people installing your module
 really do not need to run such tests, as it is unlikely that the documentation
 will acquire typos while in transit. :-)
 
-You can add your own stopwords, which are words that should be ignored by the
+You can add your own stop words, which are words that should be ignored by the
 spell check, like so:
 
     add_stopwords(qw(asdf thiswordiscorrect));
 
 Adding stopwards in this fashion affects all files checked for the remainder of
 the test script. See L<Pod::Spell> (which this module is built upon) for a
-variety of ways to add per-file stopwords to each .pm file.
+variety of ways to add per-file stop words to each .pm file.
 
-If you have a lot of stopwords, it's useful to put them in your test file's
+If you have a lot of stop words, it's useful to put them in your test file's
 C<DATA> section like so:
 
     use Test::Spelling;

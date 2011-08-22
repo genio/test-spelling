@@ -8,6 +8,8 @@ all_from   'lib/Test/Spelling.pm';
 githubmeta;
 
 requires 'Pod::Spell' => '1.01';
+test_requires 'Test::More' => '0.88';
+test_requires 'Test::Tester';
 
 manifest_skip;
 auto_manifest;

@@ -331,9 +331,9 @@ errors.
 When it fails, C<pod_file_spelling_ok> will show any spelling errors as
 diagnostics.
 
-The optional second argument TESTNAME is the name of the test.  If it
-is omitted, C<pod_file_spelling_ok> chooses a default test name "POD spelling
-for FILENAME".
+The optional second argument is the name of the test.  If it is
+omitted, C<pod_file_spelling_ok> chooses a default test name "POD
+spelling for C<$filename>".
 
 =head2 all_pod_files( [@dirs] )
 

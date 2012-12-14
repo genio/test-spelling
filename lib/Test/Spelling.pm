@@ -20,12 +20,14 @@ our @EXPORT = qw(
     all_pod_files
     set_pod_file_filter
     has_working_spellchecker
+    set_pod_parser
 );
 
 my $TEST = Test::Builder->new;
 
 my $SPELLCHECKER;
 my $FILE_FILTER = sub { 1 };
+my $POD_PARSER  = Pod::Spell->new;
 
 sub spellchecker_candidates {
     # if they've specified a spellchecker, use only that one
@@ -112,8 +114,7 @@ sub invalid_words_in {
     open my $handle, '>', \$document;
 
     # save digested POD to the string $document
-    my $checker = Pod::Spell->new;
-    $checker->parse_from_file($file, $handle);
+    $POD_PARSER->parse_from_file($file, $handle);
 
     my @words = _get_spellcheck_results($document);
 
@@ -236,6 +237,10 @@ sub set_spell_cmd {
 
 sub set_pod_file_filter {
     $FILE_FILTER = shift;
+}
+
+sub set_pod_parser {
+    $POD_PARSER = shift;
 }
 
 1;
@@ -394,6 +399,13 @@ L</all_pod_files_spelling_ok>).
         return 0 if $filename =~ /_ja.pod$/; # skip Japanese translations
         return 1;
     });
+
+=head2 set_pod_parser($object)
+
+By default L<Pod::Spell> is used to generate text suitable for spellchecking
+from the input POD.  If you want to use a different parser, perhaps a
+customized subclass of L<Pod::Spell>, call C<set_pod_parser> with an object
+that isa L<Pod::Parser>.
 
 =head1 SEE ALSO
 

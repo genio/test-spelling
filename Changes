@@ -1,5 +1,9 @@
 Revision history for Test-Spelling
 
+0.16  2012-12-20
+        - Allow use of a custom POD parser rather than Pod::Spell
+          using set_pod_parser (Thomas Sibley)
+
 0.15  2011-08-22
         - Begin adding actual tests
           (Hilariously, adding the suggested t/pod-spell.t to this

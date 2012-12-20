@@ -405,7 +405,7 @@ L</all_pod_files_spelling_ok>).
 By default L<Pod::Spell> is used to generate text suitable for spellchecking
 from the input POD.  If you want to use a different parser, perhaps a
 customized subclass of L<Pod::Spell>, call C<set_pod_parser> with an object
-that isa L<Pod::Parser>.
+that is-a L<Pod::Parser>.
 
 =head1 SEE ALSO
 

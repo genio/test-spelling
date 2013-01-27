@@ -7,7 +7,7 @@ use base 'Exporter';
 use Pod::Spell;
 use Test::Builder;
 use File::Spec;
-use IPC::Open3;
+use IPC::Run3;
 use Symbol 'gensym';
 
 our $VERSION = '0.16';
@@ -60,26 +60,13 @@ sub _get_spellcheck_results {
     for my $spellchecker (spellchecker_candidates()) {
         my @words;
         my $ok = eval {
-            # IPC::Open3 says "If CHLD_ERR is false [...] then STDOUT and
-            # STDERR of the child are on the same filehandle (this means that
-            # an autovivified lexical cannot be used for the STDERR
-            # filehandle [...])" - what a crummy API!
-            my $child_error = gensym;
 
-            my $pid = open3(my ($child_in, $spellcheck_results), $child_error, $spellchecker);
+            my ($spellcheck_results, $errors);
+            IPC::Run3::run3($spellchecker, \$document, \$spellcheck_results, \$errors);
 
-            print $child_in $document;
+            @words = split /\n/, $spellcheck_results;
 
-            # signal to spellchecker that we're done giving it words
-            close $child_in or die $!;
-
-            @words = <$spellcheck_results>;
-
-            my $errors = do { local $/; <$child_error> };
             die "spellchecker had errors: $errors" if length $errors;
-
-            # wait for spellchecker to clean up
-            waitpid $pid, 0;
 
             1;
         };

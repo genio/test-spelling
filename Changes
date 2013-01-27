@@ -1,5 +1,14 @@
 Revision history for Test-Spelling
 
+0.17  2012-01-27
+        - Use IPC::Run3 instead of IPC::Open3
+            Quoth IPC::Open3:
+                If you try to read from the child's stdout writer
+                and their stderr writer, you'll have problems with
+                blocking ... This is very dangerous, as you may
+                block forever.
+            Also the code is nicely shorter. (Randy Stauner)
+
 0.16  2012-12-20
         - Allow use of a custom POD parser rather than Pod::Spell
           using set_pod_parser (Thomas Sibley)

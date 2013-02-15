@@ -10,6 +10,8 @@ use File::Spec;
 use IPC::Run3;
 use Symbol 'gensym';
 
+use constant HAVE_UTF8 => ($] >= 5.008001);
+
 our $VERSION = '0.17';
 
 our @EXPORT = qw(
@@ -207,6 +209,12 @@ sub add_stopwords {
     for (@_) {
         # explicit copy so we don't modify constants as in add_stopwords("SQLite")
         my $word = $_;
+
+        # this isn't right: Pod::Spell should respect '=encoding' and use character strings
+        # (but it hasn't seen a release since 2001)
+        if( HAVE_UTF8 ){
+          utf8::encode($word) if utf8::is_utf8($word);
+        }
 
         # XXX: the processing this performs is to support "perl t/spell.t 2>>
         # t/spell.t" which is bunk. in the near future the processing here will

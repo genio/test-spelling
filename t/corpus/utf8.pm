@@ -12,7 +12,4 @@ __END__
 
 UTF8::Pod - correctly spelled POD in honor of Simões
 
-カレブ クッシング
-
-=END
-
+=cut

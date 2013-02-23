@@ -11,6 +11,7 @@ use IPC::Run3;
 use Symbol 'gensym';
 
 use constant HAVE_UTF8 => ($] >= 5.008001);
+BEGIN { if( HAVE_UTF8 ){ require Encode; } }
 
 our $VERSION = '0.17';
 
@@ -56,6 +57,7 @@ sub has_working_spellchecker {
 sub _get_spellcheck_results {
     my $document = shift;
     my $dryrun = shift;
+    my $encoding = shift;
 
     my @errors;
 
@@ -65,6 +67,12 @@ sub _get_spellcheck_results {
 
             my ($spellcheck_results, $errors);
             IPC::Run3::run3($spellchecker, \$document, \$spellcheck_results, \$errors);
+
+            if( HAVE_UTF8 ){
+              # expect UTF-8 because we wrote to the handle with :utf8
+              $spellcheck_results = Encode::decode('UTF-8', $spellcheck_results)
+                if $encoding;
+            }
 
             @words = split /\n/, $spellcheck_results;
 
@@ -105,7 +113,11 @@ sub invalid_words_in {
     # save digested POD to the string $document
     $POD_PARSER->parse_from_file($file, $handle);
 
-    my @words = _get_spellcheck_results($document);
+    my $encoding = HAVE_UTF8
+      ? $POD_PARSER->isa('Test::Spelling::PodSpell') && $POD_PARSER->{encoding}
+      : '';
+
+    my @words = _get_spellcheck_results($document, 0, $encoding);
 
     chomp for @words;
     return @words;
@@ -210,12 +222,6 @@ sub add_stopwords {
         # explicit copy so we don't modify constants as in add_stopwords("SQLite")
         my $word = $_;
 
-        # this isn't right: Pod::Spell should respect '=encoding' and use character strings
-        # (but it hasn't seen a release since 2001)
-        if( HAVE_UTF8 ){
-          utf8::encode($word) if utf8::is_utf8($word);
-        }
-
         # XXX: the processing this performs is to support "perl t/spell.t 2>>
         # t/spell.t" which is bunk. in the near future the processing here will
         # become more modern
@@ -236,6 +242,47 @@ sub set_pod_file_filter {
 
 sub set_pod_parser {
     $POD_PARSER = shift;
+}
+
+if( HAVE_UTF8 ){
+  package # no_index
+    Test::Spelling::PodSpell;
+  our @ISA = 'Pod::Spell';
+
+  sub parse_from_file {
+    my $self = shift;
+
+    # starting over
+    delete $self->{encoding};
+
+    return $self->SUPER::parse_from_file(@_);
+  }
+
+  sub command {
+    my $self = shift;
+
+    if( $_[0] eq 'encoding' ){
+      ($self->{encoding}) = ($_[1] =~ /(\S+)/);
+      # avoid having the print() issue warnings, but since
+      # the ':encoding()' layer doesn't work on fake handles just use :utf8
+      binmode $self->output_handle, ':utf8';
+    }
+    else {
+      $self->SUPER::command(@_);
+    }
+
+    return;
+  }
+
+  sub _treat_words {
+    my ($self, $string) = @_;
+    if( $self->{encoding} ){
+      $string = Encode::decode($self->{encoding}, $string);
+    }
+    $self->SUPER::_treat_words($string);
+  }
+
+  Test::Spelling::set_pod_parser(Test::Spelling::PodSpell->new);
 }
 
 1;

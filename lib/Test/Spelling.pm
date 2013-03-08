@@ -148,6 +148,7 @@ sub all_pod_files_spelling_ok {
 
     my $ok = 1;
     for my $file (@files) {
+        local $Test::Builder::Level = $Test::Builder::Level + 1;
         pod_file_spelling_ok($file) or undef $ok;
     }
     return $ok;

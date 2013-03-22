@@ -10,6 +10,9 @@ use File::Spec;
 use IPC::Run3;
 use Symbol 'gensym';
 
+use constant HAVE_UTF8 => ($] >= 5.008001);
+BEGIN { if( HAVE_UTF8 ){ require Encode; } }
+
 our $VERSION = '0.17';
 
 our @EXPORT = qw(
@@ -54,6 +57,7 @@ sub has_working_spellchecker {
 sub _get_spellcheck_results {
     my $document = shift;
     my $dryrun = shift;
+    my $encoding = shift;
 
     my @errors;
 
@@ -63,6 +67,12 @@ sub _get_spellcheck_results {
 
             my ($spellcheck_results, $errors);
             IPC::Run3::run3($spellchecker, \$document, \$spellcheck_results, \$errors);
+
+            if( HAVE_UTF8 ){
+              # expect UTF-8 because we wrote to the handle with :utf8
+              $spellcheck_results = Encode::decode('UTF-8', $spellcheck_results)
+                if $encoding;
+            }
 
             @words = split /\n/, $spellcheck_results;
 
@@ -103,7 +113,11 @@ sub invalid_words_in {
     # save digested POD to the string $document
     get_pod_parser()->parse_from_file($file, $handle);
 
-    my @words = _get_spellcheck_results($document);
+    my $encoding = HAVE_UTF8
+      ? $POD_PARSER->isa('Test::Spelling::PodSpell') && $POD_PARSER->{encoding}
+      : '';
+
+    my @words = _get_spellcheck_results($document, 0, $encoding);
 
     chomp for @words;
     return @words;
@@ -235,6 +249,47 @@ sub get_pod_parser {
 
 sub set_pod_parser {
     $POD_PARSER = shift;
+}
+
+if( HAVE_UTF8 ){
+  package # no_index
+    Test::Spelling::PodSpell;
+  our @ISA = 'Pod::Spell';
+
+  sub parse_from_file {
+    my $self = shift;
+
+    # starting over
+    delete $self->{encoding};
+
+    return $self->SUPER::parse_from_file(@_);
+  }
+
+  sub command {
+    my $self = shift;
+
+    if( $_[0] eq 'encoding' ){
+      ($self->{encoding}) = ($_[1] =~ /(\S+)/);
+      # avoid having the print() issue warnings, but since
+      # the ':encoding()' layer doesn't work on fake handles just use :utf8
+      binmode $self->output_handle, ':utf8';
+    }
+    else {
+      $self->SUPER::command(@_);
+    }
+
+    return;
+  }
+
+  sub _treat_words {
+    my ($self, $string) = @_;
+    if( $self->{encoding} ){
+      $string = Encode::decode($self->{encoding}, $string);
+    }
+    $self->SUPER::_treat_words($string);
+  }
+
+  Test::Spelling::set_pod_parser(Test::Spelling::PodSpell->new);
 }
 
 1;

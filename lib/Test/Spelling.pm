@@ -122,7 +122,8 @@ sub pod_file_spelling_ok {
     my @words = invalid_words_in($file);
 
     # remove stopwords, select unique errors
-    @words = grep { !$Pod::Wordlist::Wordlist{$_} } @words;
+    my $WL = \%Pod::Wordlist::Wordlist;
+    @words = grep { !$WL->{$_} && !$WL->{lc $_} } @words;
     my %seen;
     @seen{@words} = ();
     @words = sort keys %seen;

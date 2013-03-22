@@ -8,7 +8,7 @@ __END__
 
 =head1 NAME
 
-Stopword::Pod - correctly spelled POD and a xzaue creator
+Stopword::Pod - correctly spelled POD and a Xzaue creator
 
 =END
 

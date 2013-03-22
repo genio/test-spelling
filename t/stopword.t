@@ -11,7 +11,7 @@ BEGIN {
 check_test(sub { pod_file_spelling_ok('t/corpus/stopword.pm', 'stopword pod file') }, {
     ok   => 0,
     name => 'stopword pod file',
-    diag => "Errors:\n    xzaue",
+    diag => "Errors:\n    Xzaue",
 });
 
 add_stopwords('xzaue');

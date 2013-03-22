@@ -16,8 +16,8 @@ like $@,
     'died with text found on STDERR';
 
 
-my $stopword = 'xzaue';
-$spell_cmd = $^X . qq< -ane "print grep { /$stopword/ } \@F">;
+my $badword = 'Xzaue';
+$spell_cmd = $^X . qq< -ane "print grep { /$badword/i } \@F">;
 set_spell_cmd($spell_cmd);
 
 check_test(sub { pod_file_spelling_ok('t/corpus/good-pod.pm', 'no mistakes') }, {
@@ -28,10 +28,10 @@ check_test(sub { pod_file_spelling_ok('t/corpus/good-pod.pm', 'no mistakes') }, 
 check_test(sub { pod_file_spelling_ok('t/corpus/stopword.pm', 'found misspelled word') }, {
     ok   => 0,
     name => 'found misspelled word',
-    diag => "Errors:\n    $stopword",
+    diag => "Errors:\n    $badword",
 });
 
-add_stopwords($stopword);
+add_stopwords(lc $badword);
 
 check_test(sub { pod_file_spelling_ok('t/corpus/stopword.pm', 'used stopword') }, {
     ok   => 1,

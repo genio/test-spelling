@@ -3,6 +3,7 @@ Revision history for Test-Spelling
 0.18  2013-04-26
         - Work around Pod::Spell limitations (David Golden)
         - Improve case handling (David Golden)
+        - Improve test failure reporting (Karen Etheridge)
         - Include more useful info in Test-Spelling's own test
             suite (Shawn Moore)
 

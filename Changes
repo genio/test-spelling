@@ -1,5 +1,11 @@
 Revision history for Test-Spelling
 
+0.18  2013-04-26
+        - Work around Pod::Spell limitations (David Golden)
+        - Improve case handling (David Golden)
+        - Include more useful info in Test-Spelling's own test
+            suite (Shawn Moore)
+
 0.17  2012-01-27
         - Use IPC::Run3 instead of IPC::Open3
             Quoth IPC::Open3:

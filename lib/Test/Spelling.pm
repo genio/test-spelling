@@ -35,7 +35,7 @@ sub spellchecker_candidates {
 
     return (
         'spell', # for back-compat, this is the top candidate ...
-        'aspell list -l en', # ... but this should become first soon
+        'aspell list -l en -p /dev/null', # ... but this should become first soon
         'ispell -l',
         'hunspell -l',
     );

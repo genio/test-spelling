@@ -1,5 +1,8 @@
 Revision history for Test-Spelling
 
+        - for more consistent results avoid using the user's local aspell
+          dictionary (RT#84869, Karen Etheridge)
+
 0.18  2013-04-26
         - Work around Pod::Spell limitations (David Golden)
         - Improve case handling (David Golden)

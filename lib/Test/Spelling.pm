@@ -6,6 +6,7 @@ use warnings;
 use base 'Exporter';
 use Pod::Spell;
 use Test::Builder;
+use Text::Wrap;
 use File::Spec;
 use IPC::Run3;
 use Symbol 'gensym';
@@ -28,6 +29,7 @@ my $TEST = Test::Builder->new;
 my $SPELLCHECKER;
 my $FILE_FILTER = sub { 1 };
 my $POD_PARSER;
+our %ALL_WORDS;
 
 sub spellchecker_candidates {
     # if they've specified a spellchecker, use only that one
@@ -124,6 +126,7 @@ sub pod_file_spelling_ok {
     # remove stopwords, select unique errors
     my $WL = \%Pod::Wordlist::Wordlist;
     @words = grep { !$WL->{$_} && !$WL->{lc $_} } @words;
+    $ALL_WORDS{$_}++ for @words;
     my %seen;
     @seen{@words} = ();
     @words = sort keys %seen;
@@ -140,7 +143,7 @@ sub pod_file_spelling_ok {
 
 sub all_pod_files_spelling_ok {
     my @files = all_pod_files(@_);
-
+    local %ALL_WORDS;
     if (!has_working_spellchecker()) {
         return $TEST->plan(skip_all => "no working spellchecker found");
     }
@@ -151,6 +154,19 @@ sub all_pod_files_spelling_ok {
     for my $file (@files) {
         local $Test::Builder::Level = $Test::Builder::Level + 1;
         pod_file_spelling_ok($file) or undef $ok;
+    }
+    if ( keys %ALL_WORDS ) {
+        # Invert k => v to v => [ k ]
+        my %values;
+        push @{ $values{ $ALL_WORDS{$_} } }, $_ for keys %ALL_WORDS;
+
+        my $labelformat = q[%6s: ];
+        my $indent      = q[ ] x 10;
+
+        $TEST->diag(qq[\nAll incorrect words, by number of occurrences:\n] .
+          join qq[\n], map { wrap( ( sprintf $labelformat, $_ ), $indent, join q[, ], sort @{ $values{$_} } ) }
+          sort { $a <=> $b } keys %values
+        );
     }
     return $ok;
 }

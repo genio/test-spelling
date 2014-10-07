@@ -1,8 +1,9 @@
 Revision history for Test-Spelling
 
-        - Add a sorted list of most commonly misspelled words to the end of
-          all_pod_files_spelling_ok to aid stopword list creation and
-          bulk correction. (Kent Fredric)
+0.20  2014-10-07
+        - Add a sorted list of your most commonly misspelled words to
+          the end of all_pod_files_spelling_ok to aid stopword list creation
+          and bulk correction. (Kent Fredric)
 
 0.19  2013-05-05
         - for more consistent results avoid using the user's local aspell

@@ -389,6 +389,9 @@ can will use work on the current system. You can use this to skip tests if
 there is no spellchecker. Note that L</all_pod_files_spelling_ok> will do this
 for you.
 
+A full list of spellcheckers which this method might test can be found in the 
+source of the C<spellchecker_candidates> method.
+
 =head2 set_spell_cmd($command)
 
 If you want to force this module to use a particular spellchecker, then you can

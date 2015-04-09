@@ -7,6 +7,7 @@ name       'Test-Spelling';
 all_from   'lib/Test/Spelling.pm';
 githubmeta;
 
+requires 'Exporter'   => '5.57';
 requires 'Pod::Spell' => '1.01';
 requires 'IPC::Run3'  => '0.044';
 test_requires 'Test::More' => '0.88';

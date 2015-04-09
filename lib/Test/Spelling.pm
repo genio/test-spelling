@@ -3,7 +3,7 @@ use 5.006;
 use strict;
 use warnings;
 
-use base 'Exporter';
+use Exporter 5.57 'import';
 use Pod::Spell;
 use Test::Builder;
 use Text::Wrap;

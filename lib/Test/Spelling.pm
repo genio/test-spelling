@@ -3,7 +3,7 @@ package Test::Spelling;
 use strict;
 use warnings;
 
-use base 'Exporter';
+use Exporter qw(import);
 use Pod::Spell;
 use Test::Builder;
 use Text::Wrap;

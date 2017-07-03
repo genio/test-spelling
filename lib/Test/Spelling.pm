@@ -101,9 +101,10 @@ sub invalid_words_in {
 
     my $document = '';
     open my $handle, '>', \$document;
+    open my $infile, '<:encoding(UTF-8)', $file;
 
     # save digested POD to the string $document
-    get_pod_parser()->parse_from_file($file, $handle);
+    get_pod_parser()->parse_from_filehandle($infile, $handle);
 
     my @words = _get_spellcheck_results($document);
 

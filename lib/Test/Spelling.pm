@@ -11,7 +11,7 @@ use File::Spec;
 use IPC::Run3;
 use Symbol 'gensym';
 
-our $VERSION = '0.20';
+our $VERSION = '0.21';
 
 our @EXPORT = qw(
     pod_file_spelling_ok
@@ -389,7 +389,7 @@ can will use work on the current system. You can use this to skip tests if
 there is no spellchecker. Note that L</all_pod_files_spelling_ok> will do this
 for you.
 
-A full list of spellcheckers which this method might test can be found in the 
+A full list of spellcheckers which this method might test can be found in the
 source of the C<spellchecker_candidates> method.
 
 =head2 set_spell_cmd($command)
@@ -444,4 +444,3 @@ You may use, modify, and distribute this package under the
 same terms as Perl itself.
 
 =cut
-

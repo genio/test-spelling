@@ -132,7 +132,7 @@ can will use work on the current system. You can use this to skip tests if
 there is no spellchecker. Note that ["all\_pod\_files\_spelling\_ok"](#all_pod_files_spelling_ok) will do this
 for you.
 
-A full list of spellcheckers which this method might test can be found in the 
+A full list of spellcheckers which this method might test can be found in the
 source of the `spellchecker_candidates` method.
 
 ## set\_spell\_cmd($command)

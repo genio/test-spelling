@@ -1,6 +1,9 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  -
+
+0.21      2019-04-19 (TRIAL)
   - Removed the POD spelling test from /t as it's now in /xt
   - Forego usage of inc::Module::Install for EU::MM
   - List out all prereqs individually; provide cpanfile

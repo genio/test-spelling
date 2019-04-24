@@ -11,7 +11,7 @@ use File::Spec;
 use IPC::Run3;
 use Symbol 'gensym';
 
-our $VERSION = '0.22';
+our $VERSION = '0.23';
 
 our @EXPORT = qw(
     pod_file_spelling_ok

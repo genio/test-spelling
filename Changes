@@ -1,7 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
-  -
+  - Zero-code-change release encompassing everything from 0.21
+  - Resolves RT#120425 . in @INC should no longer be an issue
 
 0.21      2019-04-19 (TRIAL)
   - Removed the POD spelling test from /t as it's now in /xt

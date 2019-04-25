@@ -321,7 +321,7 @@ L<add_stopwords> will be changed and documented properly.
 
 =head2 all_pod_files_spelling_ok( [@files/@directories] )
 
-Checks all the files for POD spelling. It gathers L<all_pod_files()> on each
+Checks all the files for POD spelling. It gathers L</all_pod_files> on each
 file/directory, and declares a L<Test::More/plan> for you (one test for each
 file), so you must not call C<plan> yourself.
 

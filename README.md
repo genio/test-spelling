@@ -69,7 +69,7 @@ ignored. In the near future, the preprocessing we do on the arguments to
 
 ## all\_pod\_files\_spelling\_ok( \[@files/@directories\] )
 
-Checks all the files for POD spelling. It gathers [all\_pod\_files()](https://metacpan.org/pod/all_pod_files\(\)) on each
+Checks all the files for POD spelling. It gathers ["all\_pod\_files"](#all_pod_files) on each
 file/directory, and declares a ["plan" in Test::More](https://metacpan.org/pod/Test::More#plan) for you (one test for each
 file), so you must not call `plan` yourself.
 

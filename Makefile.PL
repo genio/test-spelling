@@ -27,7 +27,6 @@ my %WriteMakefileArgs = (
     "Symbol" => 0,
     "Test::Builder" => 0,
     "Text::Wrap" => 0,
-    "base" => 0,
     "strict" => 0,
     "warnings" => 0
   },
@@ -37,6 +36,7 @@ my %WriteMakefileArgs = (
     "Test::More" => "0.88",
     "Test::Tester" => 0,
     "strict" => 0,
+    "utf8" => 0,
     "warnings" => 0
   },
   "VERSION" => "0.24",
@@ -56,8 +56,8 @@ my %FallbackPrereqs = (
   "Test::More" => "0.88",
   "Test::Tester" => 0,
   "Text::Wrap" => 0,
-  "base" => 0,
   "strict" => 0,
+  "utf8" => 0,
   "warnings" => 0
 );
 

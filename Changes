@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.23      2019-05-21
   - Fixed some documentation errors (Mohammad S Anwar)
   - Added unicode support (Kivanc Yazan, GH PR#10)
   - Bump Perl prereq to 5.8 now that we support unicode

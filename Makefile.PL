@@ -20,7 +20,7 @@ my %WriteMakefileArgs = (
   "LICENSE" => "perl",
   "NAME" => "Test::Spelling",
   "PREREQ_PM" => {
-    "Exporter" => 0,
+    "Exporter" => "5.57",
     "File::Spec" => 0,
     "IPC::Run3" => 0,
     "Pod::Spell" => 0,
@@ -46,7 +46,7 @@ my %WriteMakefileArgs = (
 );
 
 my %FallbackPrereqs = (
-  "Exporter" => 0,
+  "Exporter" => "5.57",
   "ExtUtils::MakeMaker" => 0,
   "File::Spec" => 0,
   "IPC::Run3" => 0,

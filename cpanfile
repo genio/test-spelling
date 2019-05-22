@@ -3,7 +3,7 @@ on 'runtime' => sub {
     requires 'strict';
     requires 'warnings';
     requires 'base';
-    requires 'Exporter';
+    requires 'Exporter' => '5.57';
     requires 'File::Spec';
     requires 'IPC::Run3';
     requires 'Pod::Spell';

@@ -32,6 +32,9 @@
       "configure" : {
          "requires" : {
             "ExtUtils::MakeMaker" : "0"
+         },
+         "suggests" : {
+            "JSON::PP" : "2.27300"
          }
       },
       "develop" : {
@@ -54,7 +57,7 @@
       },
       "runtime" : {
          "requires" : {
-            "Exporter" : "0",
+            "Exporter" : "5.57",
             "File::Spec" : "0",
             "IPC::Run3" : "0",
             "Pod::Spell" : "0",
@@ -583,6 +586,7 @@
       "Kivanc Yazan <kivancyazan@gmail.com>",
       "Mohammad S Anwar <mohammad.anwar@yahoo.com>",
       "Olaf Alders <olaf@wundersolutions.com>",
+      "Olivier Mengu\u00e9 <dolmen@cpan.org>",
       "Randy Stauner <randy@magnificent-tears.com>",
       "Shawn M Moore <sartak@cpan.org>",
       "Thomas Sibley <trs@bestpractical.com>"

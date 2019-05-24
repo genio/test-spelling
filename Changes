@@ -2,6 +2,8 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
   - Fixup the prereqs some
+  - Revert the unicode support added in the last release as it caused
+    some test breakage
 
 0.23      2019-05-21
   - Fixed some documentation errors (Mohammad S Anwar)

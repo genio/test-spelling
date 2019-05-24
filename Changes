@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  -
 
 0.24      2019-05-24
   - Fixup the prereqs some

@@ -275,7 +275,6 @@ Place a file, C<pod-spell.t> in your distribution's C<xt/author> directory:
     use Test::Spelling;
     use Pod::Wordlist;
 
-    set_spell_cmd('hunspell -l');
     add_stopwords(<DATA>);
     all_pod_files_spelling_ok( qw( bin lib ) );
 
@@ -289,13 +288,13 @@ Or, you can gate the spelling test with the environment variable C<AUTHOR_TESTIN
     use warnings;
     use Test::More;
 
-    use Test::Spelling;
-    use Pod::Wordlist;
-
     BEGIN {
         plan skip_all => "Spelling tests only for authors"
             unless $ENV{AUTHOR_TESTING};
     }
+
+    use Test::Spelling;
+    use Pod::Wordlist;
 
     all_pod_files_spelling_ok();
 
@@ -415,7 +414,7 @@ Returns true if every C<POD> file has correct spelling, or false if any of them 
 This function will show any spelling errors as diagnostics.
 
 * B<NOTE:> This only tests using bytes. This is not decoded content, etc. Do
-not expect this to work with unicode content, for example. This uses an open
+not expect this to work with Unicode content, for example. This uses an open
 with no layers and no decoding.
 
 =head2 get_pod_parser
@@ -457,7 +456,7 @@ omitted, C<pod_file_spelling_ok> chooses a default test name
 C<< POD spelling for $filename >>.
 
 * B<NOTE:> This only tests using bytes. This is not decoded content, etc. Do
-not expect this to work with unicode content, for example. This uses an open
+not expect this to work with Unicode content, for example. This uses an open
 with no layers and no decoding.
 
 =head2 set_pod_file_filter

@@ -14,7 +14,6 @@ use Test::More;
 use Test::Spelling;
 use Pod::Wordlist;
 
-set_spell_cmd('hunspell -l');
 add_stopwords(<DATA>);
 all_pod_files_spelling_ok( qw( bin lib ) );
 
@@ -30,13 +29,13 @@ use strict;
 use warnings;
 use Test::More;
 
-use Test::Spelling;
-use Pod::Wordlist;
-
 BEGIN {
     plan skip_all => "Spelling tests only for authors"
         unless $ENV{AUTHOR_TESTING};
 }
+
+use Test::Spelling;
+use Pod::Wordlist;
 
 all_pod_files_spelling_ok();
 ```
@@ -164,7 +163,7 @@ Returns true if every `POD` file has correct spelling, or false if any of them f
 This function will show any spelling errors as diagnostics.
 
 \* **NOTE:** This only tests using bytes. This is not decoded content, etc. Do
-not expect this to work with unicode content, for example. This uses an open
+not expect this to work with Unicode content, for example. This uses an open
 with no layers and no decoding.
 
 ## get\_pod\_parser
@@ -212,7 +211,7 @@ omitted, `pod_file_spelling_ok` chooses a default test name
 `POD spelling for $filename`.
 
 \* **NOTE:** This only tests using bytes. This is not decoded content, etc. Do
-not expect this to work with unicode content, for example. This uses an open
+not expect this to work with Unicode content, for example. This uses an open
 with no layers and no decoding.
 
 ## set\_pod\_file\_filter

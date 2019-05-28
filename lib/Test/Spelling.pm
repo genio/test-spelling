@@ -297,7 +297,6 @@ Or, you can gate the spelling test:
             unless -d 'inc/.author';
     }
 
-    use Test::Spelling;
     all_pod_files_spelling_ok();
 
 =head1 DESCRIPTION

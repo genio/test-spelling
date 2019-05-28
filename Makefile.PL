@@ -8,7 +8,7 @@ use warnings;
 use ExtUtils::MakeMaker;
 
 my %WriteMakefileArgs = (
-  "ABSTRACT" => "check for spelling errors in POD files",
+  "ABSTRACT" => "Check for spelling errors in POD files",
   "AUTHOR" => "Ivan Tubert-Brohman <itub\@cpan.org>",
   "BUILD_REQUIRES" => {
     "ExtUtils::MakeMaker" => 0

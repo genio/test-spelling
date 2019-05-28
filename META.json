@@ -1,5 +1,5 @@
 {
-   "abstract" : "check for spelling errors in POD files",
+   "abstract" : "Check for spelling errors in POD files",
    "author" : [
       "Ivan Tubert-Brohman <itub@cpan.org>"
    ],
@@ -491,7 +491,7 @@
                      "bin",
                      "lib"
                   ],
-                  "spell_cmd" : "aspell list",
+                  "spell_cmd" : "hunspell -l",
                   "stopwords" : [
                      "Brohman",
                      "CPAN",

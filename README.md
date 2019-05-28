@@ -23,7 +23,7 @@ SomeBizarreWord
 YetAnotherBIzarreWord
 ```
 
-Or, you can gate the spelling test:
+Or, you can gate the spelling test with the environment variable `AUTHOR_TESTING`:
 
 ```perl
 use strict;
@@ -35,7 +35,7 @@ use Pod::Wordlist;
 
 BEGIN {
     plan skip_all => "Spelling tests only for authors"
-        unless -d 'inc/.author';
+        unless $ENV{AUTHOR_TESTING};
 }
 
 all_pod_files_spelling_ok();
@@ -58,7 +58,7 @@ distribution install, or in a package that will run in an uncontrolled
 environment. There is no way of predicting whether the word list or spellcheck
 program used will give the same results. You **can** include the test in your
 distribution, but be sure to run it only for authors of the module by guarding
-it in a `skip_all unless -d 'inc/.author'` clause, or by putting the test in
+it in a `skip_all unless $ENV{AUTHOR_TESTING}` clause, or by putting the test in
 your distribution's `xt/author` directory. Anyway, people installing your module
 really do not need to run such tests, as it is unlikely that the documentation
 will acquire typos while in transit.
@@ -78,11 +78,17 @@ If you have a lot of stop words, it's useful to put them in your test file's
 `DATA` section like so:
 
 ```perl
+use strict;
+use warnings;
+use Test::More;
+
 use Test::Spelling;
+use Pod::Wordlist;
+
 add_stopwords(<DATA>);
 all_pod_files_spelling_ok();
 
-__END__
+__DATA__
 folksonomy
 Jifty
 Zakirov
@@ -157,6 +163,10 @@ in the ["SYNOPSIS"](#synopsis).
 Returns true if every `POD` file has correct spelling, or false if any of them fail.
 This function will show any spelling errors as diagnostics.
 
+\* **NOTE:** This only tests using bytes. This is not decoded content, etc. Do
+not expect this to work with unicode content, for example. This uses an open
+with no layers and no decoding.
+
 ## get\_pod\_parser
 
 ```perl
@@ -200,6 +210,10 @@ diagnostics.
 The optional second argument is the name of the test.  If it is
 omitted, `pod_file_spelling_ok` chooses a default test name
 `POD spelling for $filename`.
+
+\* **NOTE:** This only tests using bytes. This is not decoded content, etc. Do
+not expect this to work with unicode content, for example. This uses an open
+with no layers and no decoding.
 
 ## set\_pod\_file\_filter
 

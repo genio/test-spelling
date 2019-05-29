@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.25      2019-05-28
   - Re-worded the documentation.
   - Ordered documented function in alphabetical order.
   - Fixed up the synopsis.

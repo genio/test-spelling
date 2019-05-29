@@ -491,7 +491,7 @@
                      "bin",
                      "lib"
                   ],
-                  "spell_cmd" : "hunspell -l",
+                  "spell_cmd" : "",
                   "stopwords" : [
                      "Brohman",
                      "CPAN",

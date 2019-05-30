@@ -66,6 +66,7 @@
             "Text::Wrap" : "0",
             "perl" : "5.008",
             "strict" : "0",
+            "utf8" : "0",
             "warnings" : "0"
          }
       },
@@ -583,13 +584,13 @@
       "David Golden <dagolden@cpan.org>",
       "Karen Etheridge <ether@cpan.org>",
       "Kent Fredric <kentfredric@gmail.com>",
-      "Kivanc Yazan <kivancyazan@gmail.com>",
+      "Kivanc Yazan <kyzn@cpan.org>",
       "Mohammad S Anwar <mohammad.anwar@yahoo.com>",
-      "Olaf Alders <olaf@wundersolutions.com>",
+      "Olaf Alders <oalders@cpan.org>",
       "Olivier Mengu\u00e9 <dolmen@cpan.org>",
-      "Randy Stauner <randy@magnificent-tears.com>",
+      "Randy Stauner <rwstauner@cpan.org>",
       "Shawn M Moore <sartak@cpan.org>",
-      "Thomas Sibley <trs@bestpractical.com>"
+      "Thomas Sibley <tsibley@cpan.org>"
    ],
    "x_generated_by_perl" : "v5.26.1",
    "x_serialization_backend" : "Cpanel::JSON::XS version 4.11"

@@ -2,6 +2,7 @@ on 'runtime' => sub {
     requires 'perl' => '5.008';
     requires 'strict';
     requires 'warnings';
+    requires 'utf8';
     requires 'Exporter' => '5.57';
     requires 'File::Spec';
     requires 'IPC::Run3';

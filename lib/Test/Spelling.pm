@@ -2,6 +2,7 @@ package Test::Spelling;
 
 use strict;
 use warnings;
+use utf8; # There will be some unicode in the docs
 
 use Exporter qw(import);
 use Pod::Spell;

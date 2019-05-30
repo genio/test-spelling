@@ -28,6 +28,7 @@ my %WriteMakefileArgs = (
     "Test::Builder" => 0,
     "Text::Wrap" => 0,
     "strict" => 0,
+    "utf8" => 0,
     "warnings" => 0
   },
   "TEST_REQUIRES" => {

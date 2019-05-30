@@ -1,7 +1,10 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
-  -
+  - Fixed some contributors' emails to match their CPAN usernames
+  - Added use utf8; to the module since we will have UTF-8 characters
+    in the documentation.
+  - Added utf8 to the runtime prereqs
 
 0.25      2019-05-28
   - Re-worded the documentation.

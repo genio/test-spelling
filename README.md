@@ -1,3 +1,7 @@
+[![Actions Status](https://github.com/genio/test-spelling/workflows/linux/badge.svg)](https://github.com/genio/test-spelling/actions)
+[![Actions Status](https://github.com/genio/test-spelling/workflows/macos/badge.svg)](https://github.com/genio/test-spelling/actions)
+[![Actions Status](https://github.com/genio/test-spelling/workflows/windows/badge.svg)](https://github.com/genio/test-spelling/actions)
+
 # NAME
 
 Test::Spelling - Check for spelling errors in POD files
@@ -42,8 +46,8 @@ all_pod_files_spelling_ok();
 
 # DESCRIPTION
 
-[Test::Spelling](https://metacpan.org/pod/Test::Spelling) lets you check the spelling of a `POD` file, and report
-its results in standard [Test::More](https://metacpan.org/pod/Test::More) fashion. This module requires a
+[Test::Spelling](https://metacpan.org/pod/Test%3A%3ASpelling) lets you check the spelling of a `POD` file, and report
+its results in standard [Test::More](https://metacpan.org/pod/Test%3A%3AMore) fashion. This module requires a
 spellcheck program such as [Hunspell](http://hunspell.github.io/),
 `aspell`, `spell`, or, `ispell`. We suggest using Hunspell.
 
@@ -70,7 +74,7 @@ add_stopwords(qw(asdf thiswordiscorrect));
 ```
 
 Adding stop words in this fashion affects all files checked for the remainder of
-the test script. See [Pod::Spell](https://metacpan.org/pod/Pod::Spell) (which this module is built upon) for a
+the test script. See [Pod::Spell](https://metacpan.org/pod/Pod%3A%3ASpell) (which this module is built upon) for a
 variety of ways to add per-file stop words to each .pm file.
 
 If you have a lot of stop words, it's useful to put them in your test file's
@@ -95,11 +99,11 @@ Zakirov
 
 To maintain backwards compatibility, comment markers and some whitespace are
 ignored. In the near future, the preprocessing we do on the arguments to
-["add\_stopwords" in Test::Spelling](https://metacpan.org/pod/Test::Spelling#add_stopwords) will be changed and documented properly.
+["add\_stopwords" in Test::Spelling](https://metacpan.org/pod/Test%3A%3ASpelling#add_stopwords) will be changed and documented properly.
 
 # FUNCTIONS
 
-[Test::Spelling](https://metacpan.org/pod/Test::Spelling) makes the following methods available.
+[Test::Spelling](https://metacpan.org/pod/Test%3A%3ASpelling) makes the following methods available.
 
 ## add\_stopwords
 
@@ -108,7 +112,7 @@ add_stopwords(@words);
 add_stopwords(<DATA>); # pull in stop words from the DATA section
 ```
 
-Add words that should be skipped by the spell checker. Note that [Pod::Spell](https://metacpan.org/pod/Pod::Spell)
+Add words that should be skipped by the spell checker. Note that [Pod::Spell](https://metacpan.org/pod/Pod%3A%3ASpell)
 already skips words believed to be code, such as everything in verbatim
 (indented) blocks and code marked up with `` `...` ``, as well as some common
 Perl jargon.
@@ -143,8 +147,8 @@ all_pod_files_spelling_ok(@list_of_directories);
 ```
 
 Checks all the files for `POD` spelling. It gathers
-["all\_pod\_files" in Test::Spelling](https://metacpan.org/pod/Test::Spelling#all_pod_files) on each file/directory, and
-declares a ["plan" in Test::More](https://metacpan.org/pod/Test::More#plan) for you (one test for each file), so you
+["all\_pod\_files" in Test::Spelling](https://metacpan.org/pod/Test%3A%3ASpelling#all_pod_files) on each file/directory, and
+declares a ["plan" in Test::More](https://metacpan.org/pod/Test%3A%3AMore#plan) for you (one test for each file), so you
 must not call `plan` yourself.
 
 If `@files` is empty, the function finds all `POD` files in the `blib`
@@ -173,7 +177,7 @@ with no layers and no decoding.
 my $object = get_pod_parser();
 ```
 
-Get the object we're using to parse the `POD`. A new [Pod::Spell](https://metacpan.org/pod/Pod::Spell) object
+Get the object we're using to parse the `POD`. A new [Pod::Spell](https://metacpan.org/pod/Pod%3A%3ASpell) object
 should be used for every file. People providing custom parsers will have
 to do this themselves.
 
@@ -238,10 +242,10 @@ my $object = Pod::Spell->new();
 set_pod_parser($object);
 ```
 
-By default [Pod::Spell](https://metacpan.org/pod/Pod::Spell) is used to generate text suitable for spellchecking
+By default [Pod::Spell](https://metacpan.org/pod/Pod%3A%3ASpell) is used to generate text suitable for spellchecking
 from the input POD.  If you want to use a different parser, perhaps a
-customized subclass of [Pod::Spell](https://metacpan.org/pod/Pod::Spell), call `set_pod_parser` with an object
-that is-a [Pod::Parser](https://metacpan.org/pod/Pod::Parser).  Be sure to create a fresh parser object for
+customized subclass of [Pod::Spell](https://metacpan.org/pod/Pod%3A%3ASpell), call `set_pod_parser` with an object
+that is-a [Pod::Parser](https://metacpan.org/pod/Pod%3A%3AParser).  Be sure to create a fresh parser object for
 each file (don't use this with ["all\_pod\_files\_spelling\_ok"](#all_pod_files_spelling_ok)).
 
 ## set\_spell\_cmd
@@ -261,13 +265,13 @@ words, one per line, to standard output will do.
 
 # SEE ALSO
 
-[Pod::Spell](https://metacpan.org/pod/Pod::Spell)
+[Pod::Spell](https://metacpan.org/pod/Pod%3A%3ASpell)
 
 # AUTHOR
 
 Ivan Tubert-Brohman `<itub@cpan.org>`
 
-Heavily based on [Test::Pod](https://metacpan.org/pod/Test::Pod) by Andy Lester and brian d foy.
+Heavily based on [Test::Pod](https://metacpan.org/pod/Test%3A%3APod) by Andy Lester and brian d foy.
 
 # COPYRIGHT & LICENSE
 

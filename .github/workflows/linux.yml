@@ -30,6 +30,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: perl -V
         run: perl -V
+      - name: Install Hunspell
+        run: apt install hunspell
       - name: Install Dependencies
         run: cpanm -n --installdeps .
       - name: Create a non-root user called "runner"

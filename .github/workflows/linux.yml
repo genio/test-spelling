@@ -31,7 +31,9 @@ jobs:
       - name: perl -V
         run: perl -V
       - name: Install Hunspell
-        run: apt install hunspell
+        run: |
+          apt-get update
+          apt-get install -y hunspell
       - name: Install Dependencies
         run: cpanm -n --installdeps .
       - name: Create a non-root user called "runner"

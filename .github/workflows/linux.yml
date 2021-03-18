@@ -27,13 +27,13 @@ jobs:
     container:
       image: perl:${{ matrix.perl-version }}
     steps:
+      - name: Update Apt
+        run: apt-get update
+      - name: Install spell checker
+        run: apt-get install -y hunspell wordlist
       - uses: actions/checkout@v2
       - name: perl -V
         run: perl -V
-      - name: Install Hunspell
-        run: |
-          apt-get update
-          apt-get install -y hunspell
       - name: Install Dependencies
         run: cpanm -n --installdeps .
       - name: Create a non-root user called "runner"

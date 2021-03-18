@@ -30,7 +30,7 @@ jobs:
       - name: Update Apt
         run: apt-get update
       - name: Install spell checker
-        run: apt-get install -y hunspell wordlist
+        run: apt-get install -y hunspell hunspell-en-us
       - uses: actions/checkout@v2
       - name: perl -V
         run: perl -V

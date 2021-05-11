@@ -247,7 +247,7 @@ each file (don't use this with ["all\_pod\_files\_spelling\_ok"](#all_pod_files_
 ## set\_spell\_cmd
 
 ```
-set_spell_cmd('hunspell -l'); # current preferred
+set_spell_cmd('hunspell -l -d en_US'); # current preferred
 set_spell_cmd('aspell list');
 set_spell_cmd('spell');
 set_spell_cmd('ispell -l');

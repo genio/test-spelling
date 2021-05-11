@@ -37,7 +37,7 @@ sub spellchecker_candidates {
     return $SPELLCHECKER if $SPELLCHECKER;
 
     return (
-        'hunspell -l', # hunspell is now the most common spell checker
+        'hunspell -l -d en_US ', # hunspell is now the most common spell checker
         'spell', # for back-compat, this is the top candidate ...
         'aspell list -l en -p /dev/null', # ... but this should become first soon
         'ispell -l',
@@ -488,7 +488,7 @@ each file (don't use this with L</all_pod_files_spelling_ok>).
 
 =head2 set_spell_cmd
 
-  set_spell_cmd('hunspell -l'); # current preferred
+  set_spell_cmd('hunspell -l -d en_US'); # current preferred
   set_spell_cmd('aspell list');
   set_spell_cmd('spell');
   set_spell_cmd('ispell -l');
